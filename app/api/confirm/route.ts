@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
+import { createHash } from "crypto";
 import { createClient } from "@/lib/supabase/server";
 import { getAuthenticatedUser } from "@/lib/auth/api";
 import { confirmDeliverySchema } from "@/lib/validation/schemas";
+
+function hashPin(pin: string) {
+  return createHash("sha256").update(pin).digest("hex");
+}
 
 export async function POST(request: Request) {
   const user = await getAuthenticatedUser();
@@ -38,13 +43,21 @@ export async function POST(request: Request) {
 
   const supabase = await createClient();
 
-  // PostgreSQL validates rider ownership, PICKED_UP state,
-  // token validity, one-time use and the final DELIVERED update.
+  // The rider supplies the plain PIN.
+  // We hash it before sending it to PostgreSQL.
+  const tokenHash = hashPin(validation.data.token_hash);
+
+  // PostgreSQL remains the final authority on:
+  // - assigned rider
+  // - PICKED_UP state
+  // - token validity
+  // - one-time use
+  // - DELIVERED transition
   const { data, error } = await supabase.rpc(
     "confirm_delivery",
     {
       p_delivery_id: validation.data.delivery_id,
-      p_token_hash: validation.data.token_hash,
+      p_token_hash: tokenHash,
     },
   );
 
