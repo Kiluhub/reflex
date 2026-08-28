@@ -1,517 +1,222 @@
 @import "tailwindcss";
 
-/* ============================================================
-   REFLEX — GLOBAL DESIGN SYSTEM
-   ============================================================ */
-
 :root {
   --background: #07090d;
   --foreground: #f5f7fa;
-
-  --bg: #07090d;
-  --surface: #0d1118;
-  --surface-2: #121722;
-
-  --border: #202735;
-  --border-soft: #181e28;
-
-  --text: #f5f7fa;
-  --muted: #8992a3;
-
+  --muted: #8b95a5;
+  --border: #202631;
+  --card: #0d1118;
   --input: #090c11;
-  --accent: #ffffff;
-
-  --success: #55c878;
+  --accent: #f5f7fa;
 }
 
 * {
   box-sizing: border-box;
 }
 
-html {
-  min-height: 100%;
-  background: var(--background);
-}
-
 body {
   margin: 0;
-  min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-
-  font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 button,
-input,
-textarea,
-select {
+input {
   font: inherit;
 }
 
-
-/* ============================================================
-   REFLEX LOGIN
-   ============================================================ */
-
 .login-page {
-  position: relative;
-
   min-height: 100vh;
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 48px 24px;
-
-  overflow: hidden;
-
-  background:
-    radial-gradient(
-      circle at 50% -10%,
-      rgba(45, 57, 76, 0.42) 0%,
-      rgba(20, 27, 38, 0.2) 28%,
-      transparent 58%
-    ),
-    radial-gradient(
-      circle at 50% 100%,
-      rgba(18, 25, 36, 0.45) 0%,
-      transparent 45%
-    ),
-    #07090d;
-}
-
-/* Very subtle technical grid */
-.login-page::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  pointer-events: none;
-
-  opacity: 0.18;
-
-  background-image:
-    linear-gradient(
-      rgba(255, 255, 255, 0.025) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.025) 1px,
-      transparent 1px
-    );
-
-  background-size: 48px 48px;
-
-  mask-image: linear-gradient(
-    to bottom,
-    black,
-    transparent 75%
-  );
-}
-
-.login-shell {
-  position: relative;
-  z-index: 1;
-
-  width: min(100%, 470px);
-
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background:
+    radial-gradient(circle at 50% 0%, #18202d 0%, transparent 42%),
+    #07090d;
 }
-
-
-/* ============================================================
-   LOGIN BRAND
-   ============================================================ */
 
 .login-brand {
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  gap: 12px;
-
+  gap: 11px;
   margin-bottom: 28px;
-}
-
-.brand-mark {
-  width: 38px;
-  height: 38px;
-
-  display: grid;
-  place-items: center;
-
-  border: 1px solid #3a4556;
-  border-radius: 11px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #151b25,
-      #0c1017
-    );
-
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.brand-mark span {
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-}
-
-.brand-name {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.brand-name > span {
-  color: #f5f7fa;
-
   font-size: 15px;
   font-weight: 800;
-
-  letter-spacing: 0.18em;
-}
-
-.brand-name small {
-  color: #657083;
-
-  font-size: 8px;
-  font-weight: 700;
-
   letter-spacing: 0.16em;
 }
 
-
-/* ============================================================
-   LOGIN CARD
-   ============================================================ */
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #3b4656;
+  border-radius: 10px;
+  background: #111722;
+  font-size: 16px;
+}
 
 .login-card {
-  width: 100%;
-
-  padding: 38px;
-
-  border: 1px solid rgba(48, 58, 73, 0.9);
-  border-radius: 20px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(17, 22, 31, 0.97),
-      rgba(10, 14, 20, 0.97)
-    );
-
-  box-shadow:
-    0 32px 100px rgba(0, 0, 0, 0.52),
-    0 8px 30px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  width: min(100%, 430px);
+  padding: 34px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(13, 17, 24, 0.94);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
 }
 
 .login-heading {
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 }
 
 .eyebrow {
-  margin: 0 0 11px;
-
-  color: #788497;
-
-  font-size: 10px;
-  font-weight: 800;
-
-  letter-spacing: 0.17em;
+  margin: 0 0 10px;
+  color: #7f8a9b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
 }
 
 .login-heading h1 {
   margin: 0;
-
-  color: #f7f8fa;
-
-  font-size: clamp(30px, 6vw, 38px);
-  font-weight: 650;
-
-  line-height: 1.05;
-  letter-spacing: -0.045em;
+  font-size: 30px;
+  letter-spacing: -0.04em;
 }
 
 .login-heading > p:last-child {
-  max-width: 340px;
-
-  margin: 12px 0 0;
-
-  color: #8993a4;
-
+  margin: 9px 0 0;
+  color: var(--muted);
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
-
-/* ============================================================
-   LOGIN FORM
-   ============================================================ */
-
 .login-form {
-  display: flex;
-  flex-direction: column;
-
-  gap: 19px;
+  display: grid;
+  gap: 18px;
 }
 
 .login-form label {
-  display: flex;
-  flex-direction: column;
-
+  display: grid;
   gap: 8px;
-
-  color: #c9d0da;
-
-  font-size: 12px;
-  font-weight: 650;
-}
-
-.login-form label > span {
-  padding-left: 1px;
+  color: #c8ced8;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .login-form input {
   width: 100%;
-  height: 52px;
-
-  padding: 0 15px;
-
-  border: 1px solid #242c38;
-  border-radius: 10px;
-
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
   outline: none;
-
-  background: #090d13;
-  color: #f5f7fa;
-
-  font-size: 14px;
-
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
+  background: var(--input);
+  color: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .login-form input::placeholder {
-  color: #4f5969;
-}
-
-.login-form input:hover {
-  border-color: #303a49;
+  color: #566071;
 }
 
 .login-form input:focus {
-  border-color: #667388;
-
-  background: #0b0f16;
-
-  box-shadow:
-    0 0 0 3px rgba(112, 126, 148, 0.1),
-    0 4px 18px rgba(0, 0, 0, 0.18);
+  border-color: #687588;
+  box-shadow: 0 0 0 3px rgba(104, 117, 136, 0.12);
 }
 
-
-/* ============================================================
-   LOGIN BUTTON
-   ============================================================ */
-
 .login-form button {
-  width: 100%;
-  height: 52px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 12px;
-
+  height: 48px;
   margin-top: 4px;
-
   border: 0;
-  border-radius: 10px;
-
-  background: #f4f6f8;
+  border-radius: 9px;
+  background: #f5f7fa;
   color: #080a0e;
-
   cursor: pointer;
-
-  font-size: 14px;
-  font-weight: 750;
-
-  transition:
-    transform 0.16s ease,
-    background 0.16s ease,
-    box-shadow 0.16s ease;
+  font-weight: 700;
+  transition: transform 0.15s, opacity 0.15s;
 }
 
 .login-form button:hover {
   transform: translateY(-1px);
-
-  background: #ffffff;
-
-  box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.28);
 }
 
 .login-form button:active {
   transform: translateY(0);
 }
 
-.login-form button:focus-visible {
-  outline: 2px solid #7d899b;
-  outline-offset: 3px;
-}
-
-.button-arrow {
-  font-size: 18px;
-  line-height: 1;
-
-  transition: transform 0.16s ease;
-}
-
-.login-form button:hover .button-arrow {
-  transform: translateX(3px);
-}
-
-
-/* ============================================================
-   LOGIN FOOTER
-   ============================================================ */
-
 .login-footer {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  gap: 10px;
-
-  margin-top: 25px;
-
-  color: #687384;
-
-  font-size: 10px;
-  font-weight: 600;
-
-  letter-spacing: 0.04em;
-}
-
-.secure-status {
-  display: flex;
-  align-items: center;
   gap: 7px;
+  margin-top: 25px;
+  color: #687384;
+  font-size: 11px;
 }
 
 .status-dot {
   width: 6px;
   height: 6px;
-
-  flex: 0 0 6px;
-
   border-radius: 50%;
-
-  background: var(--success);
-
-  box-shadow:
-    0 0 0 3px rgba(85, 200, 120, 0.08),
-    0 0 10px rgba(85, 200, 120, 0.55);
+  background: #55c878;
+  box-shadow: 0 0 8px rgba(85, 200, 120, 0.6);
 }
 
-.footer-divider {
-  width: 1px;
-  height: 11px;
-
-  background: #252c37;
+.copyright {
+  margin: 22px 0 0;
+  color: #4d5665;
+  font-size: 11px;
 }
 
-.login-footer > span:last-child {
-  color: #4e5868;
+@media (max-width: 480px) {
+  .login-page {
+    padding: 20px 16px;
+  }
 
-  font-size: 9px;
-
-  letter-spacing: 0.12em;
+  .login-card {
+    padding: 26px 22px;
+    border-radius: 15px;
+  }
 }
-
 
 /* ============================================================
-   LOGIN BOTTOM
+   REFLEX — OPERATIONAL DASHBOARD DESIGN SYSTEM
+   Shared visual language for retailer, dispatcher and rider.
    ============================================================ */
 
-.login-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  margin-top: 22px;
-  padding: 0 3px;
+:root {
+  --bg: #07090d;
+  --surface: #0d1118;
+  --surface-2: #121722;
+  --border: #202735;
+  --text: #f5f7fa;
+  --muted: #8992a3;
+  --accent: #ffffff;
 }
 
-.login-bottom p {
+* {
+  box-sizing: border-box;
+}
+
+body {
   margin: 0;
-
-  color: #4f5968;
-
-  font-size: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-.login-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.login-meta span {
-  color: #3e4756;
-
-  font-size: 8px;
-  font-weight: 700;
-
-  letter-spacing: 0.1em;
-}
-
-
-/* ============================================================
-   SHARED APPLICATION HEADER
-   ============================================================ */
-
+/* Shared application header. */
 body > header,
 header {
   min-height: 64px;
-
   display: flex;
   align-items: center;
-
   gap: 18px;
-
   padding: 0 32px;
-
   border-bottom: 1px solid var(--border);
-
   background: rgba(7, 9, 13, 0.92);
 }
 
@@ -522,12 +227,9 @@ header strong {
 
 header span {
   padding: 5px 10px;
-
   border: 1px solid var(--border);
   border-radius: 999px;
-
   color: var(--muted);
-
   font-size: 12px;
   text-transform: capitalize;
 }
@@ -538,12 +240,9 @@ header form {
 
 header button {
   border: 0;
-
   background: transparent;
   color: var(--muted);
-
   cursor: pointer;
-
   font: inherit;
 }
 
@@ -551,253 +250,184 @@ header button:hover {
   color: var(--text);
 }
 
-
-/* ============================================================
-   DASHBOARD WORKSPACE
-   IMPORTANT:
-   Dashboard rules are scoped to .dashboard so they cannot
-   interfere with the login page.
-   ============================================================ */
-
-.dashboard {
+/* Main application workspace. */
+main {
   width: min(1400px, calc(100% - 48px));
-
   margin: 0 auto;
-
   padding: 42px 0 80px;
 }
 
-.dashboard > h1 {
+main > h1 {
   margin: 0;
-
   font-size: clamp(28px, 4vw, 40px);
-
   letter-spacing: -0.045em;
 }
 
-.dashboard > p {
+main > p {
   margin: 8px 0 32px;
-
   color: var(--muted);
 }
 
-
-/* ============================================================
-   DASHBOARD METRICS
-   ============================================================ */
-
-.dashboard > section:first-of-type {
+/* Dashboard metric cards. */
+main > section:first-of-type {
   display: grid;
-
   grid-template-columns: repeat(4, 1fr);
-
   gap: 14px;
-
   margin-bottom: 28px;
 }
 
-.dashboard > section:first-of-type > div {
+main > section:first-of-type > div {
   min-height: 110px;
-
   padding: 20px;
-
   border: 1px solid var(--border);
   border-radius: 14px;
-
   background: var(--surface);
 }
 
-.dashboard > section:first-of-type span,
-.dashboard > section:first-of-type p {
+main > section:first-of-type span,
+main > section:first-of-type p {
   display: block;
-
   margin: 0 0 12px;
-
   color: var(--muted);
-
   font-size: 12px;
 }
 
-.dashboard > section:first-of-type strong {
+main > section:first-of-type strong {
   display: block;
-
   font-size: 30px;
-
   letter-spacing: -0.04em;
 }
 
-
-/* ============================================================
-   DASHBOARD FORMS / CARDS
-   ============================================================ */
-
-.dashboard form,
-.dashboard article,
-.dashboard > section:not(:first-of-type) {
+/* Forms and operational cards. */
+main form,
+main article,
+main > section:not(:first-of-type) {
   border: 1px solid var(--border);
-
   border-radius: 16px;
-
   background: var(--surface);
 }
 
-.dashboard form {
+main form {
   padding: 24px;
-
   margin-bottom: 24px;
 }
 
-.dashboard form h2,
-.dashboard section h2 {
+main form h2,
+main section h2 {
   margin: 0 0 20px;
-
   font-size: 18px;
-
   letter-spacing: -0.02em;
 }
 
-.dashboard form input,
-.dashboard form textarea,
-.dashboard form select,
-.dashboard form button,
-.dashboard section select,
-.dashboard section button {
+main form input,
+main form textarea,
+main form select,
+main form button,
+main section select,
+main section button {
   font: inherit;
 }
 
-.dashboard form input,
-.dashboard form textarea,
-.dashboard form select,
-.dashboard section select {
+main form input,
+main form textarea,
+main form select,
+main section select {
   width: 100%;
-
   padding: 13px 14px;
-
   margin: 6px 0 12px;
-
   border: 1px solid var(--border);
   border-radius: 9px;
-
   outline: none;
-
   background: var(--surface-2);
   color: var(--text);
 }
 
-.dashboard form textarea {
+main form textarea {
   min-height: 100px;
-
   resize: vertical;
 }
 
-.dashboard form input:focus,
-.dashboard form textarea:focus,
-.dashboard form select:focus,
-.dashboard section select:focus {
+main form input:focus,
+main form textarea:focus,
+main form select:focus,
+main section select:focus {
   border-color: #596273;
 }
 
-.dashboard form button,
-.dashboard section button {
+main form button,
+main section button {
   padding: 11px 16px;
-
   border: 0;
   border-radius: 9px;
-
   background: var(--accent);
   color: #07090d;
-
   font-weight: 700;
-
   cursor: pointer;
 }
 
-.dashboard form button:hover,
-.dashboard section button:hover {
+main form button:hover,
+main section button:hover {
   opacity: 0.88;
 }
 
-.dashboard form p {
+main form p {
   color: var(--muted);
-
   font-size: 13px;
 }
 
-
-/* ============================================================
-   DELIVERY LISTS
-   ============================================================ */
-
-.dashboard section:has(article) {
+/* Delivery lists. */
+main section:has(article) {
   padding: 24px;
 }
 
-.dashboard section article {
+main section article {
   padding: 20px;
-
   margin-top: 12px;
-
   background: var(--surface-2);
 }
 
-.dashboard article > div,
-.dashboard article header {
+main article > div,
+main article header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 16px;
-
   padding: 0;
-
   min-height: auto;
-
   border: 0;
-
   background: transparent;
 }
 
-.dashboard article strong {
+main article strong {
   font-size: 15px;
 }
 
-.dashboard article span {
+main article span {
   color: var(--muted);
-
   font-size: 12px;
-
   text-transform: capitalize;
 }
 
-.dashboard article p {
+main article p {
   margin: 8px 0;
-
   color: #b9c0cc;
-
   font-size: 13px;
 }
 
-.dashboard article small {
+main article small {
   display: block;
-
   margin-top: 14px;
-
   color: #626b7b;
 }
 
-
-/* ============================================================
-   DASHBOARD MOBILE
-   ============================================================ */
-
+/* Mobile layout. */
 @media (max-width: 800px) {
-  .dashboard {
+  main {
     width: min(100% - 28px, 680px);
-
     padding-top: 28px;
   }
 
-  .dashboard > section:first-of-type {
+  main > section:first-of-type {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -806,67 +436,12 @@ header button:hover {
   }
 }
 
-
-/* ============================================================
-   LOGIN MOBILE
-   ============================================================ */
-
-@media (max-width: 560px) {
-  .login-page {
-    padding: 30px 16px;
+@media (max-width: 480px) {
+  main > section:first-of-type {
+    grid-template-columns: 1fr;
   }
 
-  .login-card {
-    padding: 30px 24px;
-
-    border-radius: 17px;
-  }
-
-  .login-brand {
-    margin-bottom: 22px;
-  }
-
-  .login-heading h1 {
-    font-size: 32px;
-  }
-
-  .login-bottom {
-    flex-direction: column;
-
-    justify-content: center;
-
-    margin-top: 18px;
-  }
-}
-
-
-/* ============================================================
-   VERY SMALL SCREENS
-   ============================================================ */
-
-@media (max-width: 400px) {
-  .login-page {
-    padding: 22px 12px;
-  }
-
-  .login-card {
-    padding: 25px 19px;
-  }
-
-  .login-heading {
-    margin-bottom: 25px;
-  }
-
-  .login-form input,
-  .login-form button {
-    height: 50px;
-  }
-
-  .login-footer {
-    flex-wrap: wrap;
-  }
-
-  .login-meta {
-    gap: 7px;
+  main form {
+    padding: 18px;
   }
 }
