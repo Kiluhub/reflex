@@ -14,7 +14,7 @@ export function CreateDeliveryForm() {
     const payload = {
       customer_name: String(formData.get("customer_name") ?? ""),
       customer_phone: String(formData.get("customer_phone") ?? ""),
-      address: String(formData.get("delivery_address") ?? ""),
+      delivery_delivery_delivery_address: String(formData.get("delivery_address") ?? ""),
       item_description: String(formData.get("item_description") ?? ""),
     };
 
