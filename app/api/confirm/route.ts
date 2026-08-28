@@ -43,11 +43,12 @@ export async function POST(request: Request) {
 
   const supabase = await createClient();
 
-  // The rider supplies the plain PIN.
-  // We hash it before sending it to PostgreSQL.
-  const tokenHash = hashPin(validation.data.token_hash);
+  // The rider supplies the plain 6-digit PIN.
+  // Never send the plain PIN to PostgreSQL.
+  const tokenHash = hashPin(validation.data.token);
 
   // PostgreSQL remains the final authority on:
+  // - authenticated rider
   // - assigned rider
   // - PICKED_UP state
   // - token validity
