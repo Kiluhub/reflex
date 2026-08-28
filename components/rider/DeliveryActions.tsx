@@ -22,7 +22,7 @@ export function DeliveryActions({
 
     try {
       // Status changes go through the protected API.
-      // PostgreSQL performs the final rider/transition checks.
+      // PostgreSQL performs the final rider and transition checks.
       const response = await fetch("/api/status", {
         method: "POST",
         headers: {
@@ -51,8 +51,9 @@ export function DeliveryActions({
   }
 
   async function confirmDelivery() {
+    // The customer gives this PIN to the rider after receiving the order.
     const token = window.prompt(
-      "Enter the customer confirmation token:",
+      "Enter the customer's 6-digit verification code:",
     );
 
     if (!token) {
@@ -63,8 +64,8 @@ export function DeliveryActions({
     setMessage("");
 
     try {
-      // The confirmation token is sent to the server for validation.
-      // The database decides whether this delivery can be completed.
+      // Send the plain PIN to the protected backend.
+      // The server hashes it and compares it with the stored hash.
       const response = await fetch("/api/confirm", {
         method: "POST",
         headers: {
@@ -72,18 +73,18 @@ export function DeliveryActions({
         },
         body: JSON.stringify({
           delivery_id: deliveryId,
-          token_hash: token,
+          token: token.trim(),
         }),
       });
 
       const result = await response.json();
 
       if (!response.ok) {
-        setMessage(result.error ?? "Confirmation failed.");
+        setMessage(result.error ?? "Invalid verification code.");
         return;
       }
 
-      setMessage("Delivery confirmed.");
+      setMessage("Delivery confirmed successfully.");
       onUpdated();
     } catch {
       setMessage("Network error. Please try again.");
