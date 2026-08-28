@@ -109,12 +109,15 @@ export async function POST(request: Request) {
   }
 
   // Store only the hash of the PIN.
-  const { error: confirmationError } = await supabase
-    .from("delivery_confirmations")
-    .insert({
-      delivery_id: data.id,
-      token_hash: tokenHash,
-    });
+  // PostgreSQL performs the protected insert through
+  // the SECURITY DEFINER function while RLS remains enabled.
+  const { error: confirmationError } = await supabase.rpc(
+    "create_delivery_confirmation",
+    {
+      p_delivery_id: data.id,
+      p_token_hash: tokenHash,
+    },
+  );
 
   if (confirmationError) {
     console.error(
@@ -153,7 +156,10 @@ export async function POST(request: Request) {
       .eq("id", data.id);
 
     return NextResponse.json(
-      { error: "Delivery created but verification email could not be sent" },
+      {
+        error:
+          "Delivery created but verification email could not be sent",
+      },
       { status: 502 },
     );
   }
