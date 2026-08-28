@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { getAuthenticatedUser } from "@/lib/auth/api";
 import { createDeliverySchema } from "@/lib/validation/schemas";
-
+import { sendDeliveryPin } from "@/lib/email/sendDeliveryPin";
 export async function GET() {
   const user = await getAuthenticatedUser();
 
@@ -56,6 +56,13 @@ export async function POST(request: Request) {
   const validation = createDeliverySchema.safeParse(body);
 
   if (!validation.success) {
+    // Return the exact fields that failed validation so the
+    // frontend can display a useful error instead of a generic message.
+    console.error(
+      "DELIVERY VALIDATION ERROR:",
+      validation.error.flatten(),
+    );
+
     return NextResponse.json(
       {
         error: "Validation failed",
@@ -83,8 +90,11 @@ export async function POST(request: Request) {
     .single();
 
   if (error) {
+    // Log the database error so development failures are diagnosable.
+    console.error("CREATE DELIVERY ERROR:", error);
+
     return NextResponse.json(
-      { error: "Failed to create delivery" },
+      { error: "Failed to create delivery", details: error.message },
       { status: 400 },
     );
   }
