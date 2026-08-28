@@ -75,7 +75,7 @@ export async function POST(request: Request) {
       retailer_id: user.id,
       customer_name: validation.data.customer_name,
       customer_phone: validation.data.customer_phone,
-      delivery_address: validation.data.delivery_address,
+      delivery_address: validation.data.address,
       item_description: validation.data.item_description,
       status: "pending",
     })
