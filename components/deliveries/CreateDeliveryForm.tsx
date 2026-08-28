@@ -14,6 +14,7 @@ export function CreateDeliveryForm() {
     const payload = {
       customer_name: String(formData.get("customer_name") ?? ""),
       customer_phone: String(formData.get("customer_phone") ?? ""),
+      customer_email: String(formData.get("customer_email") ?? ""),
       address: String(formData.get("delivery_address") ?? ""),
       item_description: String(formData.get("item_description") ?? ""),
     };
@@ -34,9 +35,13 @@ export function CreateDeliveryForm() {
         return;
       }
 
+      // The confirmation PIN will be sent to the customer's email.
+      setMessage("Delivery created successfully. Verification code sent to the customer.");
+
       // Reset the form after successful creation.
-      setMessage("Delivery created successfully.");
-      (document.getElementById("delivery-form") as HTMLFormElement)?.reset();
+      (
+        document.getElementById("delivery-form") as HTMLFormElement
+      )?.reset();
     } catch {
       setMessage("Network error. Please try again.");
     } finally {
@@ -45,10 +50,7 @@ export function CreateDeliveryForm() {
   }
 
   return (
-    <form
-      id="delivery-form"
-      action={submitDelivery}
-    >
+    <form id="delivery-form" action={submitDelivery}>
       <h2>Create delivery</h2>
 
       <input
@@ -60,6 +62,13 @@ export function CreateDeliveryForm() {
       <input
         name="customer_phone"
         placeholder="Customer phone"
+        required
+      />
+
+      <input
+        name="customer_email"
+        type="email"
+        placeholder="Customer email"
         required
       />
 
