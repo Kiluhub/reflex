@@ -31,7 +31,7 @@ export async function GET() {
   // Return only accounts whose role is rider.
   const { data, error } = await supabase
     .from("profiles")
-    .select("id, full_name, email")
+    .select("id, full_name, phone")
     .eq("role", "rider")
     .order("full_name");
 
