@@ -24,7 +24,9 @@ export const updateStatusSchema = z.object({
 });
 
 // Delivery confirmation request.
+// The rider enters the plain 6-digit PIN received by the customer.
+// The API hashes the PIN before sending it to PostgreSQL.
 export const confirmDeliverySchema = z.object({
   delivery_id: z.string().uuid(),
-  token_hash: z.string().trim().min(1).max(256),
+  token: z.string().trim().regex(/^\d{6}$/, "PIN must be 6 digits"),
 });
