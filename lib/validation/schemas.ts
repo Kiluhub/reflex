@@ -5,6 +5,7 @@ import { z } from "zod";
 export const createDeliverySchema = z.object({
   customer_name: z.string().trim().min(2).max(120),
   customer_phone: z.string().trim().min(7).max(30),
+  customer_email: z.string().trim().email().max(254),
   address: z.string().trim().min(3).max(300),
   item_description: z.string().trim().min(1).max(500),
 });
@@ -22,8 +23,7 @@ export const updateStatusSchema = z.object({
   status: z.enum(["picked_up", "delivered"]),
 });
 
-// QR confirmation request.
-// The token itself is treated as opaque input.
+// Delivery confirmation request.
 export const confirmDeliverySchema = z.object({
   delivery_id: z.string().uuid(),
   token_hash: z.string().trim().min(1).max(256),
