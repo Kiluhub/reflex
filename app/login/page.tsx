@@ -8,7 +8,7 @@ export default function LoginPage() {
         <span>REFLEX</span>
       </div>
 
-      <section className="login-card">
+      <div className="login-card">
         <div className="login-heading">
           <p className="eyebrow">DELIVERY OPERATIONS</p>
           <h1>Welcome back</h1>
@@ -45,7 +45,7 @@ export default function LoginPage() {
           <span className="status-dot" />
           Secure operational access
         </div>
-      </section>
+      </div>
 
       <p className="copyright">
         Reflex Delivery Operations
